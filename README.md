@@ -1,4 +1,4 @@
-# gpuc-vuejs
+# gpuc-front-vue
 
 ## Project setup
 ```
@@ -24,3 +24,4 @@ npm run test
 ```
 npm run lint
 ```
+
