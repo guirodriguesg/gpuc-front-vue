@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 # gpuc-front-vue
-=======
-# gpuc-vuejs
 
 ## Project setup
 ```
@@ -27,4 +24,4 @@ npm run test
 ```
 npm run lint
 ```
->>>>>>> 4553d2fd13f23e367662d3f6e5badc50cf2af5ed
+
