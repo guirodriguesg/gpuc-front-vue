@@ -24,7 +24,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <!-- <v-btn :disabled="$v.$invalid" color="primary" large @click="submit">Login</v-btn> -->
+                        <v-btn :disabled="loginValid()" color="primary" large @click="submit">Login</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -35,8 +35,9 @@
 
 <script>
 
-import { required, user, minLength } from '@vuelidate/validators'
+import { required, minLength } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
+import axios from 'axios';
 
 export default {
   name: 'Login',
@@ -50,8 +51,7 @@ export default {
   validations: {
     user: {
       usuario: {
-        required,
-        user
+        required
       },
       password: {
         required,
@@ -59,12 +59,31 @@ export default {
       }
     }
   },
+  computed: {
+    userErros () {
+      const errors = []
+      const usuario = this.$v.user.usuario
+      return errors
+    }
+  },
   methods: {
     log () {
-      // console.log('vuelidate: ', this.$v)
+      console.log('vuelidate: ', this.$v)
+    },
+    loginValid () {
+      return this.$v.invalid
     },
     submit () {
-      // console.log('user: ', this.user)
+      console.log('user: ', this.user)
+      axios.post('http://localhost:3000/api/v1/seguranca/login', {
+        "login": "usuario3",
+        "senha": "123456"
+      })
+      .then(response => {
+          console.log(response.data.token);
+          localStorage.setItem('token', response.data.token);
+          // window.location.href = "http://localhost:8081/produtos"
+      }).error(e => console.log(e))
     }
   }
 }
