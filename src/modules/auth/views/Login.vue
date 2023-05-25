@@ -81,7 +81,7 @@ export default {
         .then(response => {
           console.log(response.data.token);
           localStorage.setItem('token', response.data.token);
-          window.location.href = "http://localhost:8081/produto"
+          window.location.href = "http://localhost:8081/home"
         }).error(e => console.log(e))
       console.log('USUARIO CRIADO COM SUCESSO')
     },
@@ -96,7 +96,7 @@ export default {
           console.log(response.data.token);
           localStorage.setItem('token', response.data.token)
           this.$router.push(this.$route.query.redirect || '/home')
-        }).error(e => console.log(e))
+        }).catch(e => console.log(e))
     }
   }
 }

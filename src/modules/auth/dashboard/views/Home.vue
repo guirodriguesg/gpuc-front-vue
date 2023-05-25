@@ -26,7 +26,6 @@
           <v-main>
             <router-view></router-view>
           </v-main>
-
         </v-flex>
       </v-layout>
     </v-container>
@@ -47,6 +46,7 @@ export default {
     links: [
       { title: 'Home', icon: 'dashboard', url: '/home' },
       { title: 'Produto', icon: 'shopping_cart', url: '/home/produto' },
+      { title: 'Produto-List', icon: 'shopping_cart', url: '/home/produto-list' },
       { title: 'Usuario', icon: 'person', url: '/home/usuario' }
     ]
   }),
