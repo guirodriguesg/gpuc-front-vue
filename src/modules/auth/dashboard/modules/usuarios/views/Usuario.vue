@@ -1,5 +1,5 @@
 <template>
-  <h1>Criar Usuario</h1>
+  <h1>Criar Usu ario</h1>
 </template>
 
 <script>
