@@ -6,7 +6,7 @@
         <td>{{ item.id }}</td>
         <td>{{ item.descricao }}</td>
         <td>{{ item.marca }}</td>
-        <td>{{ item.valor }}</td>
+        <td>{{ `R$${item.preco}` }}</td>
         <td style="text-align: center;">
           <v-btn small class="mr-2" @click="editItem(item)">Editar</v-btn>
           <v-btn small @click="deleteItem(item)">Excluir</v-btn>
@@ -37,7 +37,7 @@ export default {
       },
       { text: 'Descricao', align: 'start', value: 'descricao', sortable: false },
       { text: 'Marca', align: 'start', value: 'marca', sortable: false },
-      { text: 'Valor', align: 'start', value: 'valor', sortable: false },
+      { text: 'Preço', align: 'start', value: 'preco', sortable: false },
       { text: 'Ações', align: 'center', sortable: false },
     ],
     desserts: [],

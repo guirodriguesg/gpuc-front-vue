@@ -13,6 +13,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <template v-slot:append>
+          <div class="pa-2">
+            <v-btn @click="logout" block>
+              Logout
+            </v-btn>
+          </div>
+        </template>
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -47,14 +54,21 @@ export default {
       { title: 'Home', icon: 'dashboard', url: '/home' },
       { title: 'Produto', icon: 'shopping_cart', url: '/home/produto' },
       { title: 'Produto-List', icon: 'shopping_cart', url: '/home/produto-list' },
-      { title: 'Usuario', icon: 'person', url: '/home/usuario' }
-    ]
+      { title: 'Usuario', icon: 'person', url: '/home/registra-usuario' }
+    ],
+    items: []
   }),
 
   watch: {
     group() {
       this.drawer = false
     },
+  },
+  methods: {
+    logout() {
+      localStorage.setItem('token', '');
+      this.$router.push('/login');
+    }
   },
 }
 </script>

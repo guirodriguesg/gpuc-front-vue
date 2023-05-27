@@ -74,18 +74,7 @@ export default {
       }
     };
   },
-  created() {
-    this.carregarProduto();
-  },
   methods: {
-    carregarProduto() {
-      axios.get(`http://localhost:3000/api/v1/produtos/${this.$route.params.id}`).then(response => {
-        console.log(response.data)
-        this.item = response.data[0]
-        // this.item.valor = new Number(this.item.preco.replace(/[^0-9]/g,''))
-        console.log(this.item)
-      }).catch(e => console.log(e))
-    },
     limpar() {
       console.log("LIMPANDO...")
       this.item.descricao = "";
@@ -93,13 +82,14 @@ export default {
       this.item.preco = 0;
     },
     salvar() {
-      if(this.item.descricao === "" || this.item.marca === "" || this.item.preco === 0){
+      console.log(this.item)
+      if(this.item === null || this.item.descricao === "" || this.item.marca === "" || this.item.preco === 0){
         this.mensagem = "Preencha todos os campos!";
         this.showMessage = true;
         return;
       }
 
-      axios.put(`http://localhost:3000/api/v1/produtos/${this.item.id}`, this.item, {
+      axios.post(`http://localhost:3000/api/v1/produtos/`, this.item, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Custom-Header': 'value'
@@ -107,7 +97,7 @@ export default {
       }
       ).then(response => {
         console.log("Produto salvo com sucesso!")
-        this.$router.go(-1);
+        // this.$router.go(-1);
 
       }).catch(e => console.log(e))
       console.log("Salvando...")
