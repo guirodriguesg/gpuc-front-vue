@@ -1,7 +1,6 @@
 const fs = require('fs')
 
 module.exports = {
-  mode: 'production',
   transpileDependencies: true,
   devServer: {
     port: 5000,
