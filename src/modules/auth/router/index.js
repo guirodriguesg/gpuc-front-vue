@@ -1,7 +1,5 @@
-const Login = () => import('./../views/Login.vue')
-const Produto = () => import('./../views/Produto.vue')
+const Login = () => import('./../views/Login.vue');
 
 export default [
   { path: '/login', component: Login },
-  { path: '/produtos', component: Produto }
 ]
