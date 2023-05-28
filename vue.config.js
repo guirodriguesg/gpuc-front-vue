@@ -6,8 +6,8 @@ module.exports = {
   devServer: {
     port: 5000,
     https: {
-      key: fs.readFileSync('./ssl/server.key'),
-      cert: fs.readFileSync('./ssl/server.crt'),
+      key: fs.readFileSync('/etc/letsencrypt/live/pucmg.vps.webdock.cloud/privkey.pem'),
+      cert: fs.readFileSync('/etc/letsencrypt/live/pucmg.vps.webdock.cloud/fullchain.pem'),
     }
    },
   configureWebpack: {
