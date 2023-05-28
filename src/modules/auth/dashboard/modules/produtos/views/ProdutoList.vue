@@ -87,9 +87,3 @@ export default {
   },
 }
 </script>
-<!-- export default {
- name: 'ProdutoList'
-,
-  }
-
-</script> -->

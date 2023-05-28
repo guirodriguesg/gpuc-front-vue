@@ -87,13 +87,12 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
-    // { title: 'Home', icon: 'dashboard', url: '/home' },
-    // { title: 'Produto', icon: 'shopping_cart', url: '/home/produto' },
     linksProduto: [
       { title: 'Listar produtos', icon: 'list', url: '/home/produto-list' },
       { title: 'Criar produto', icon: 'add', url: '/home/produto-create' },
     ],
     linksUsuario: [
+      { title: 'Listar usuários', icon: 'list', url: '/home/usuario-list'  },
       { title: 'Cadastrar usuário', icon: 'add', url: '/home/registra-usuario'  }
     ],
     isAdmin: false,
