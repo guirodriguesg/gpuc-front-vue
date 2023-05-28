@@ -90,8 +90,8 @@ export default {
     // { title: 'Home', icon: 'dashboard', url: '/home' },
     // { title: 'Produto', icon: 'shopping_cart', url: '/home/produto' },
     linksProduto: [
-      { title: 'Lista produtos', icon: 'list', url: '/home/produto-list' },
-      { title: 'Criar produtos', icon: 'add', url: '/home/produto-create' },
+      { title: 'Listar produtos', icon: 'list', url: '/home/produto-list' },
+      { title: 'Criar produto', icon: 'add', url: '/home/produto-create' },
     ],
     linksUsuario: [
       { title: 'Cadastrar usuário', icon: 'add', url: '/home/registra-usuario'  }
