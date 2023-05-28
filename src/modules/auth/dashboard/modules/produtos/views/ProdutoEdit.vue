@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     carregarProduto() {
-      const url = process.env.URL_API_PRODUTO || 'http://localhost:4000/api/v1/produtos'
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
       axios.get(`${url}/${this.$route.params.id}`).then(response => {
         console.log(response.data)
         this.item = response.data[0]
@@ -100,7 +100,7 @@ export default {
         return;
       }
 
-      const url = process.env.URL_API_PRODUTO || 'http://localhost:4000/api/v1/produtos'
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
       axios.put(`${url}/${this.item.id}`, this.item, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

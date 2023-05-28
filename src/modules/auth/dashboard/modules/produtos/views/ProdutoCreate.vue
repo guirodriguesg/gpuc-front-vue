@@ -89,7 +89,7 @@ export default {
         return;
       }
 
-      const url = process.env.URL_API_PRODUTO || 'http://localhost:4000/api/v1/produtos'
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
       axios.post(`${url}/`, this.item, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

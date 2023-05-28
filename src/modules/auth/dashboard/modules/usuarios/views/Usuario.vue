@@ -87,7 +87,7 @@ export default {
   methods: {
     save() {
       console.log(this.user);
-      const url = process.env.URL_API_SEGU || 'http://localhost:4000/api/v1/seguranca'
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/seguranca'
       axios.post(`${url}/register`, this.user)
         .then(response => {
           this.mensagem = 'Usuário cadastrado com sucesso';

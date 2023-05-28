@@ -58,7 +58,7 @@ export default {
   methods: {
     loadItems() {
       this.loading = true
-      const url = process.env.URL_API_PRODUTO || "http://localhost:4000/api/v1/produtos"
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
       axios.get(`${url}`).then(response => {
           console.log(response.data)
           this.desserts = response.data
@@ -70,7 +70,7 @@ export default {
       console.log('Editar item:', item);
     },
     deleteItem(item) {
-      const url = process.env.URL_API_PRODUTO || "http://localhost:4000/api/v1/produtos"
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
       axios.delete(`${url}/${item.id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
