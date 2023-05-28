@@ -23,7 +23,6 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   console.log(requiresAuth)
-  console.log(localStorage.getItem('token'))
   if ((requiresAuth && localStorage.getItem('token') === null)) {
     console.log("TO LOGIN")
     next({ path: '/login', query: { redirect: to.fullPath } })

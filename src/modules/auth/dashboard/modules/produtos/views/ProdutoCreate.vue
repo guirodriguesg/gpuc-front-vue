@@ -98,7 +98,7 @@ export default {
       }
       ).then(response => {
         console.log("Produto salvo com sucesso!")
-        // this.$router.go(-1);
+        this.$router.go(-1);
 
       }).catch(e => console.log(e))
       console.log("Salvando...")

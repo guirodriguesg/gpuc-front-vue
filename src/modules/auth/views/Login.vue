@@ -71,12 +71,10 @@ export default {
       console.log('vuelidate: ', this.$v)
     },
     loginValid() {
-      console.log(this.user)
       return this.user.login == "" && this.senha == "";
     },
 
     login() {
-      console.log('user: ', this.user)
       const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/seguranca'
       axios.post( `${url}/login`, this.user)
         .then(response => {
@@ -85,7 +83,6 @@ export default {
           this.user = {};
           this.$router.push(this.$route.query.redirect || '/home');
         }).catch(e => {
-          console.log(e.response.data.message)
           this.user = {};
           this.mensagem = e.response.data.message;
           this.showMessage = true;
