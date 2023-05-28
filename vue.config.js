@@ -9,7 +9,7 @@ module.exports = {
       cert: fs.readFileSync('/etc/letsencrypt/live/pucmg.vps.webdock.cloud/fullchain.pem'),
     },
     disableHostCheck: true,
-    public: '0.0.0.0:5000'
+    public: 'https://pucmg.vps.webdock.cloud:5000'
    },
   configureWebpack: {
     module: {
