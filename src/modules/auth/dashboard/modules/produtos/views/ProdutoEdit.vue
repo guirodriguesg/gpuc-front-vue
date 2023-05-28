@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     carregarProduto() {
-      axios.get(`http://localhost:3000/api/v1/produtos/${this.$route.params.id}`).then(response => {
+      axios.get(`${process.env.URL_API_PRODUTO}/${this.$route.params.id}`).then(response => {
         console.log(response.data)
         this.item = response.data[0]
         // this.item.valor = new Number(this.item.preco.replace(/[^0-9]/g,''))
@@ -99,7 +99,7 @@ export default {
         return;
       }
 
-      axios.put(`http://localhost:3000/api/v1/produtos/${this.item.id}`, this.item, {
+      axios.put(`${process.env.URL_API_PRODUTO}/${this.item.id}`, this.item, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Custom-Header': 'value'

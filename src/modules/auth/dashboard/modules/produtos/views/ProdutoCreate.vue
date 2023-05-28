@@ -89,7 +89,7 @@ export default {
         return;
       }
 
-      axios.post(`http://localhost:3000/api/v1/produtos/`, this.item, {
+      axios.post(`${process.env.URL_API_PRODUTO}/`, this.item, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Custom-Header': 'value'

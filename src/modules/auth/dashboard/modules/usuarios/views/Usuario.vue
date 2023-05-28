@@ -74,14 +74,6 @@ export default {
       }
     }
 
-    function save() {
-      // if(this.v$.$validate){
-      //   return this.v$.$validate
-      // }
-
-      console.log(this.rules);
-    }
-
     return { user, clear, v$ }
   },
 
@@ -95,7 +87,7 @@ export default {
   methods: {
     save() {
       console.log(this.user);
-      axios.post('http://localhost:3000/api/v1/seguranca/register', this.user)
+      axios.post(`${process.env.URL_API_SEGU}/register`, this.user)
         .then(response => {
           this.mensagem = 'Usuário cadastrado com sucesso';
           this.showMessage = true;

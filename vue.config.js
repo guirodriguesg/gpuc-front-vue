@@ -1,6 +1,14 @@
+const fs = require('fs')
+
 module.exports = {
-  transpileDependencies: true,devServer: {
-    port: 5000
+  mode: 'production',
+  transpileDependencies: true,
+  devServer: {
+    port: 5000,
+    https: {
+      key: fs.readFileSync('./ssl/server.key'),
+      cert: fs.readFileSync('./ssl/server.crt'),
+    }
    },
   configureWebpack: {
     module: {
