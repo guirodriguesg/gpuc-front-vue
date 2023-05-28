@@ -58,7 +58,8 @@ export default {
   methods: {
     loadItems() {
       this.loading = true
-      axios.get(`${process.env.URL_API_PRODUTO}`).then(response => {
+      const url = process.env.URL_API_PRODUTO || "http://localhost:4000/api/v1/produtos"
+      axios.get(`${url}`).then(response => {
           console.log(response.data)
           this.desserts = response.data
           console.log(this.desserts)
@@ -69,7 +70,8 @@ export default {
       console.log('Editar item:', item);
     },
     deleteItem(item) {
-      axios.delete(`${process.env.URL_API_PRODUTO}/${item.id}`, {
+      const url = process.env.URL_API_PRODUTO || "http://localhost:4000/api/v1/produtos"
+      axios.delete(`${url}/${item.id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }

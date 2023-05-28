@@ -16,24 +16,6 @@ const router = new Router({
       path: '',
       redirect: '/login',
     }
-    // ,
-    // {
-    //   path: '/home',
-    //   meta: { requiresAuth: true },
-    //   children: [
-    //     {
-    //       path: '/home/produto',
-    //       component: Produto,
-    //       meta: { requiresAuth: true }
-    //     }
-    //     ,
-    //     {
-    //       path: '/home/usuario', 
-    //       component: Usuario,
-    //       meta: { requiresAuth: true }
-    //     }
-    //   ],
-    // } 
   ]
 })
 

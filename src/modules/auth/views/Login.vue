@@ -77,7 +77,8 @@ export default {
 
     login() {
       console.log('user: ', this.user)
-      axios.post( `${process.env.URL_API_SEGU}/login`, this.user)
+      const url = process.env.URL_API_SEGU || 'http://localhost:4000/api/v1/seguranca'
+      axios.post( `${url}/login`, this.user)
         .then(response => {
           localStorage.setItem("user", this.user);
           localStorage.setItem('token', response.data.token);

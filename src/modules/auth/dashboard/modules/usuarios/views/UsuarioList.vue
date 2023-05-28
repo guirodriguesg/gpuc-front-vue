@@ -52,7 +52,8 @@ export default {
   methods: {
     loadItems() {
       this.loading = true
-      axios.get(`${process.env.URL_API_SEGU}`).then(response => {
+      const url = process.env.URL_API_SEGU || 'http://localhost:4000/api/v1/seguranca'
+      axios.get(`${url}`).then(response => {
           console.log(response.data)
           this.desserts = response.data
           console.log(this.desserts)
