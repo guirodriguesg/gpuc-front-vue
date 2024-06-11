@@ -89,7 +89,8 @@ export default {
         return;
       }
 
-      axios.post(`http://localhost:3000/api/v1/produtos/`, this.item, {
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
+      axios.post(`${url}/`, this.item, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Custom-Header': 'value'
@@ -97,7 +98,7 @@ export default {
       }
       ).then(response => {
         console.log("Produto salvo com sucesso!")
-        // this.$router.go(-1);
+        this.$router.go(-1);
 
       }).catch(e => console.log(e))
       console.log("Salvando...")

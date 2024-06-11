@@ -16,24 +16,6 @@ const router = new Router({
       path: '',
       redirect: '/login',
     }
-    // ,
-    // {
-    //   path: '/home',
-    //   meta: { requiresAuth: true },
-    //   children: [
-    //     {
-    //       path: '/home/produto',
-    //       component: Produto,
-    //       meta: { requiresAuth: true }
-    //     }
-    //     ,
-    //     {
-    //       path: '/home/usuario', 
-    //       component: Usuario,
-    //       meta: { requiresAuth: true }
-    //     }
-    //   ],
-    // } 
   ]
 })
 
@@ -41,7 +23,6 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   console.log(requiresAuth)
-  console.log(localStorage.getItem('token'))
   if ((requiresAuth && localStorage.getItem('token') === null)) {
     console.log("TO LOGIN")
     next({ path: '/login', query: { redirect: to.fullPath } })

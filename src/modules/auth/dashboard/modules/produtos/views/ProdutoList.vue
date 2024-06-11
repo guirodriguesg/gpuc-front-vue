@@ -1,19 +1,30 @@
 <template>
-  <v-data-table :items-per-page="itemsPerPage" :headers="headers" :items="desserts" item-value="id" 
-    class="elevation-1">
-    <template #item="{ item }">
-      <tr>
-        <td>{{ item.id }}</td>
-        <td>{{ item.descricao }}</td>
-        <td>{{ item.marca }}</td>
-        <td>{{ `R$${item.preco}` }}</td>
-        <td style="text-align: center;">
-          <v-btn small class="mr-2" @click="editItem(item)">Editar</v-btn>
-          <v-btn small @click="deleteItem(item)">Excluir</v-btn>
-        </td>
-      </tr>
+  <div>
+    <div>
+        <v-alert v-if="showMessage" variant="outlined" type="warning">
+          {{ mensagem }}
+        </v-alert>
+      </div>
+    <template>
+      <v-data-table :items-per-page="itemsPerPage" :headers="headers" :items="desserts" item-value="id" 
+        class="elevation-1">
+        <template #item="{ item }">
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.descricao }}</td>
+            <td>{{ item.marca }}</td>
+            <td>{{ `R$${item.preco}` }}</td>
+            <td style="text-align: center;">
+              <v-btn small class="mr-2" @click="editItem(item)">Editar</v-btn>
+              <v-btn small @click="deleteItem(item)">Excluir</v-btn>
+            </td>
+          </tr>
+        </template>
+    
+      </v-data-table>
+   
     </template>
-  </v-data-table>
+  </div>
 </template>
 
 <script>
@@ -41,11 +52,14 @@ export default {
       { text: 'Ações', align: 'center', sortable: false },
     ],
     desserts: [],
+    mensagem: '',
+    showMessage: false,
   }},
   methods: {
     loadItems() {
       this.loading = true
-      axios.get('http://localhost:3000/api/v1/produtos').then(response => {
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
+      axios.get(`${url}`).then(response => {
           console.log(response.data)
           this.desserts = response.data
           console.log(this.desserts)
@@ -56,15 +70,22 @@ export default {
       console.log('Editar item:', item);
     },
     deleteItem(item) {
-      // Lógica para excluir o item
-      console.log('Excluir item:', item);
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/produtos'
+      axios.delete(`${url}/${item.id}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      }).then(response => {
+        this.desserts = response.data
+        console.log(this.desserts)
+      }).catch(e => {
+        console.log(e)
+        this.mensagem = e.response.data.message;
+        this.showMessage = true;
+        console.log(e.response.data.message)
+          setTimeout(() => { this.showMessage = false}, 4000);
+        })
     },
   },
 }
 </script>
-<!-- export default {
- name: 'ProdutoList'
-,
-  }
-
-</script> -->

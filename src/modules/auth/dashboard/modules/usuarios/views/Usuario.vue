@@ -3,6 +3,11 @@
     <v-container class="bg-surface-variant mb-6">
       <div style="height: 150px;"></div>
       <v-sheet class="pa-12" color="grey-lighten-3">
+        <div>
+          <v-alert v-if="showMessage" variant="outlined" type="success">
+            {{ mensagem }}
+          </v-alert>
+        </div>
         <v-form>
           <v-text-field v-model="user.nome" label="Nome" required @input="v$.nome.$touch"
             @blur="v$.nome.$touch"></v-text-field>
@@ -12,7 +17,7 @@
           <v-text-field v-model="user.login" label="Login" required @input="v$.login.$touch"
             @blur="v$.login.$touch"></v-text-field>
 
-          <v-text-field v-model="user.email" label="E-mail" required></v-text-field>
+          <v-text-field v-model="user.email" label="E-mail" type="email" required></v-text-field>
 
           <v-select v-model="selectedRoles" :items="user.roles" label="Permissões" multiple persistent-hint></v-select>
 
@@ -20,10 +25,10 @@
             required @input="v$.senha.$touch" @blur="v$.senha.$touch" :counter="8" type="password"></v-text-field>
 
           <v-btn class="me-4" :disabled="v$.$invalid" @click="save()">
-            submit
+            SALVAR
           </v-btn>
           <v-btn @click="clear()">
-            Limpar
+            LIMPAR
           </v-btn>
         </v-form>
       </v-sheet>
@@ -43,7 +48,7 @@ export default {
       nome: '',
       login: '',
       email: '',
-      roles: ['ADMIN', 'USER'],
+      roles: ["ADMIN", "USER"],
       senha: '',
     }
 
@@ -69,31 +74,32 @@ export default {
       }
     }
 
-    function save() {
-      // if(this.v$.$validate){
-      //   return this.v$.$validate
-      // }
-
-      console.log(this.rules);
-    }
-
     return { user, clear, v$ }
   },
 
   data: () => ({
-    selectedRoles: []
+    selectedRoles: [],
+    mensagem: '',
+    showMessage: false,
+    isOk: false,
   }),
 
   methods: {
     save() {
-        console.log(this.user);
-        axios.post('http://localhost:3000/api/v1/seguranca/register', this.user)
-          .then(response => {
-            console.log(response.data.token);
-            console.log('USUARIO CRIADO COM SUCESSO');
-            this.$router.push(this.$route.query.redirect || '/login');
-          }).error(e => console.log(e))
-      }
+      console.log(this.user);
+      const url = 'https://pucmg.vps.webdock.cloud:4000/api/v1/seguranca'
+      axios.post(`${url}/register`, this.user)
+        .then(response => {
+          this.mensagem = 'Usuário cadastrado com sucesso';
+          this.showMessage = true;
+          this.isOk = true;
+          setTimeout(() => { this.showMessage = false }, 4000);
+        }).error(e => {
+          this.mensagem = e.response.data.message;
+          this.showMessage = true;
+          setTimeout(() => { this.showMessage = false }, 4000);
+        })
+    }
   }
 
 }
